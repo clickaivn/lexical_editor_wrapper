@@ -1,5 +1,7 @@
 {
-  "version": "0.6.2",
+  "name": "clk-lexical",
+  "description": "A React wrapper for the Lexical editor with configurable plugins.",
+  "version": "1.1.4",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -43,16 +45,15 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "verbum",
   "author": "Ozan Yurtsever",
-  "module": "dist/verbum.esm.js",
+  "module": "dist/clk-lexical.esm.js",
   "size-limit": [
     {
-      "path": "dist/verbum.cjs.production.min.js",
+      "path": "dist/clk-lexical.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/verbum.esm.js",
+      "path": "dist/clk-lexical.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -115,6 +116,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ozanyurtsever/verbum"
+    "url": "https://github.com/ozanyurtsever/clk-lexical"
   }
 }

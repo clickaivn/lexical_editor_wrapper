@@ -25,6 +25,7 @@ import {
 
 import * as ToolbarTypes from './types';
 import Divider from './ui/Divider';
+import { PLAYGROUND_TRANSFORMERS } from './plugins/MarkdownTransformers';
 
 export {
   EditorComposer,
@@ -46,4 +47,5 @@ export {
   ToolbarTypes,
   Divider,
   MentionsPlugin,
+  PLAYGROUND_TRANSFORMERS,
 };

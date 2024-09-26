@@ -62,7 +62,7 @@ export class MentionNode extends TextNode {
     this.__mention = mentionName;
     if (popover !== undefined) {
       this.__popoverCard = popover;
-      this.__popoverCard.card.id = 'verbum-mention-popover';
+      this.__popoverCard.card.id = 'clk-lexical-mention-popover';
       this.__popoverCard.card.style.position = 'absolute';
       this.removePopover();
     }
@@ -91,8 +91,12 @@ export class MentionNode extends TextNode {
 
     dom.addEventListener('pointerover', (event) => {
       const { left, top } = dom.getBoundingClientRect();
-      this.__popoverCard.card.style.left = `${left - this.__popoverCard.leftOffset}px`;
-      this.__popoverCard.card.style.top = `${top - this.__popoverCard.topOffset}px`;
+      this.__popoverCard.card.style.left = `${
+        left - this.__popoverCard.leftOffset
+      }px`;
+      this.__popoverCard.card.style.top = `${
+        top - this.__popoverCard.topOffset
+      }px`;
       document.body.appendChild(this.__popoverCard.card);
     });
 

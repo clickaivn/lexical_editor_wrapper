@@ -16,7 +16,7 @@ interface IEditorComposer {
 
 const EditorComposer = ({ children, initialEditorState }: IEditorComposer) => {
   const initialConfig = {
-    namespace: 'VerbumEditor',
+    namespace: 'clk-lexicalEditor',
     nodes: [...PlaygroundNodes],
     onError: (error) => {
       throw error;

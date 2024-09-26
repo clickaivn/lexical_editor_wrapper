@@ -35,9 +35,11 @@ const parseYouTubeVideoID = (url: string) => {
 function InsertImageDialog({
   activeEditor,
   onClose,
+  onUpload,
 }: {
   activeEditor: LexicalEditor;
   onClose: () => void;
+  onUpload?: (files: File[]) => Promise<string>;
 }): JSX.Element {
   const [mode, setMode] = useState<null | 'url' | 'file'>(null);
 
@@ -50,17 +52,6 @@ function InsertImageDialog({
     <>
       {!mode && (
         <div className="ToolbarPlugin__dialogButtonsList">
-          <Button
-            data-test-id="image-modal-option-sample"
-            onClick={() =>
-              onClick({
-                altText: 'Yellow flower in tilt shift lens',
-                src: null, //yellowFlowerImage,
-              })
-            }
-          >
-            Sample
-          </Button>
           <Button
             data-test-id="image-modal-option-url"
             onClick={() => setMode('url')}
@@ -76,7 +67,9 @@ function InsertImageDialog({
         </div>
       )}
       {mode === 'url' && <InsertImageUriDialogBody onClick={onClick} />}
-      {mode === 'file' && <InsertImageUploadedDialogBody onClick={onClick} />}
+      {mode === 'file' && (
+        <InsertImageUploadedDialogBody onClick={onClick} onUpload={onUpload} />
+      )}
     </>
   );
 }
@@ -213,23 +206,29 @@ function InsertImageUriDialogBody({
 
 function InsertImageUploadedDialogBody({
   onClick,
+  onUpload,
 }: {
   onClick: (payload: InsertImagePayload) => void;
+  onUpload?: (files: File[]) => Promise<string>;
 }) {
   const [src, setSrc] = useState('');
   const [altText, setAltText] = useState('');
 
   const isDisabled = src === '';
 
-  const loadImage = (files: FileList) => {
+  const loadImage = async (files: FileList) => {
     const reader = new FileReader();
-    reader.onload = function () {
-      if (typeof reader.result === 'string') {
-        setSrc(reader.result);
-      }
-      return '';
-    };
-    reader.readAsDataURL(files[0]);
+    if (onUpload) {
+      const hostedURL = await onUpload(Array.from(files));
+      setSrc(hostedURL);
+    } else {
+      reader.readAsDataURL(files[0]);
+      reader.onload = function () {
+        if (typeof reader.result === 'string') {
+          setSrc(reader.result);
+        }
+      };
+    }
   };
 
   return (
@@ -313,6 +312,7 @@ export interface IInsertDropdownProps {
   enableExcalidraw?: boolean;
   enableHorizontalRule?: boolean;
   enableStickyNote?: boolean;
+  onUpload?: (files: File[]) => Promise<string>;
 }
 
 const InsertDropdown: React.FC<IInsertDropdownProps> = ({
@@ -323,6 +323,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
   enablePoll = false,
   enableHorizontalRule = false,
   enableStickyNote = false,
+  onUpload,
 }: IInsertDropdownProps) => {
   const { initialEditor, activeEditor } = useContext(EditorContext);
   const [modal, showModal] = useModal();
@@ -370,6 +371,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
                 <InsertImageDialog
                   activeEditor={activeEditor}
                   onClose={onClose}
+                  onUpload={onUpload}
                 />
               ));
             }}

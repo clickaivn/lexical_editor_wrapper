@@ -28,6 +28,7 @@ import {
   $createTableCellNode,
   $createTableNode,
   $createTableRowNode,
+  $isTableCellNode,
   $isTableNode,
   $isTableRowNode,
   TableCellHeaderStates,
@@ -111,6 +112,7 @@ export const TWEET: ElementTransformer = {
 
 // Very primitive table setup
 const TABLE_ROW_REG_EXP = /^(?:\|)(.+)(?:\|)\s?$/;
+const TABLE_ROW_DIVIDER_REG_EXP = /^(\| ?:?-*:? ?)+\|\s?$/;
 
 export const TABLE: ElementTransformer = {
   dependencies: [TableNode, TableRowNode, TableCellNode],
@@ -124,6 +126,7 @@ export const TABLE: ElementTransformer = {
 
     const output = [];
 
+    let firstRow = true;
     for (const row of node.getChildren()) {
       const rowOutput = [];
 
@@ -137,12 +140,22 @@ export const TABLE: ElementTransformer = {
       }
 
       output.push(`| ${rowOutput.join(' | ')} |`);
+      if (firstRow) {
+        output.push('| ' + rowOutput.map(() => '---').join(' | ') + ' |');
+        firstRow = false;
+      }
     }
 
     return output.join('\n');
   },
   regExp: TABLE_ROW_REG_EXP,
   replace: (parentNode, _1, match) => {
+    if (TABLE_ROW_DIVIDER_REG_EXP.test(match[0])) {
+      parentNode.getPreviousSibling();
+      parentNode.remove();
+      return;
+    }
+
     const matchCells = mapToTableCells(match[0]);
 
     if (matchCells == null) {

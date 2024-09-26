@@ -1,20 +1,20 @@
-# Verbum
+# clk-lexical
 
-Verbum - Flexible Text Editor for React
+clk-lexical - Flexible Text Editor for React
 
-**Verbum** is a fully flexible rich text editor based on [`lexical-playground`](https://github.com/facebook/lexical/tree/main/packages/lexical-playground) and [`lexical`](https://github.com/facebook/lexical) framework.
+**clk-lexical** is a fully flexible rich text editor based on [`lexical-playground`](https://github.com/facebook/lexical/tree/main/packages/lexical-playground) and [`lexical`](https://github.com/facebook/lexical) framework.
 
 **⚠️ As the Lexical framework is currently in early development, this component library is also likely to change quite often**
 
 ## Installation
 
 ```
-npm install verbum --save
+npm install clk-lexical --save
 ```
 
 ## Demo
 
-![Demo](verbum-demo.gif)
+![Demo](clk-lexical-demo.gif)
 Live demo is coming soon...
 
 ## Usage
@@ -39,7 +39,7 @@ import {
   TextFormatDropdown,
   UnderlineButton,
   Divider,
-} from 'verbum';
+} from 'clk-lexical';
 
 const NoteViewer: FC = () => {
   return (
@@ -109,7 +109,7 @@ Coming soon... -->
 
 ## Automatic browser language detection Support
 
-Verbum supports automatic browser language detection by default if locale not provided. If the browser language is set to `fr`, the editor will be automatically localized in French. If the browser language is set to `en`, the editor will be automatically localized in English. If the browser language is set to any other language, the editor will be automatically localized in English.
+clk-lexical supports automatic browser language detection by default if locale not provided. If the browser language is set to `fr`, the editor will be automatically localized in French. If the browser language is set to `en`, the editor will be automatically localized in English. If the browser language is set to any other language, the editor will be automatically localized in English.
 
 <br />
 

@@ -24,7 +24,7 @@ import {
 import { $createParagraphNode, $createTextNode, $getRoot } from 'lexical';
 
 export default {
-  title: 'Verbum',
+  title: 'clk-lexical',
 };
 
 const initialState = () => {

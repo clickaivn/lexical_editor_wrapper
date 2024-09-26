@@ -6,7 +6,7 @@
  *
  */
 
-import {Provider} from '@lexical/yjs';
+import { Provider } from '@lexical/yjs';
 import { WebsocketProvider } from 'y-websocket';
 import { Doc } from 'yjs';
 
@@ -30,7 +30,6 @@ export function createWebsocketProvider(
     doc.load();
   }
 
-  
   // @ts-ignore
   return new WebsocketProvider(
     WEBSOCKET_ENDPOINT,

@@ -112,7 +112,9 @@ const BlockFormatDropdown = () => {
     >
       <button className="item" onClick={formatParagraph} type="button">
         <span className="icon paragraph" />
-        <span className="text">{t('toolbar:blockFormatDropdown.paragraph')}</span>
+        <span className="text">
+          {t('toolbar:blockFormatDropdown.paragraph')}
+        </span>
         {blockType === 'paragraph' && <span className="active" />}
       </button>
       <button
@@ -121,9 +123,7 @@ const BlockFormatDropdown = () => {
         type="button"
       >
         <span className="icon h1" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.h1')}
-        </span>
+        <span className="text">{t('toolbar:blockFormatDropdown.h1')}</span>
         {blockType === 'h1' && <span className="active" />}
       </button>
       <button
@@ -132,9 +132,7 @@ const BlockFormatDropdown = () => {
         type="button"
       >
         <span className="icon h2" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.h2')}
-        </span>
+        <span className="text">{t('toolbar:blockFormatDropdown.h2')}</span>
         {blockType === 'h2' && <span className="active" />}
       </button>
       <button
@@ -143,30 +141,22 @@ const BlockFormatDropdown = () => {
         type="button"
       >
         <span className="icon h3" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.h3')}
-        </span>
+        <span className="text">{t('toolbar:blockFormatDropdown.h3')}</span>
         {blockType === 'h3' && <span className="active" />}
       </button>
       <button className="item" onClick={formatBulletList} type="button">
         <span className="icon bullet-list" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.bullet')}
-        </span>
+        <span className="text">{t('toolbar:blockFormatDropdown.bullet')}</span>
         {blockType === 'bullet' && <span className="active" />}
       </button>
       <button className="item" onClick={formatNumberedList} type="button">
         <span className="icon numbered-list" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.number')}
-        </span>
+        <span className="text">{t('toolbar:blockFormatDropdown.number')}</span>
         {blockType === 'number' && <span className="active" />}
       </button>
       <button className="item" onClick={formatCheckList} type="button">
         <span className="icon check-list" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.check')}
-        </span>
+        <span className="text">{t('toolbar:blockFormatDropdown.check')}</span>
         {blockType === 'check' && <span className="active" />}
       </button>
       <button className="item" onClick={formatQuote} type="button">
@@ -176,9 +166,7 @@ const BlockFormatDropdown = () => {
       </button>
       <button className="item" onClick={formatCode} type="button">
         <span className="icon code" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.code')}
-        </span>
+        <span className="text">{t('toolbar:blockFormatDropdown.code')}</span>
         {blockType === 'code' && <span className="active" />}
       </button>
     </DropDown>
