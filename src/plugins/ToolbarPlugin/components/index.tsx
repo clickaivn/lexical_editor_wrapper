@@ -1,3 +1,4 @@
+import StrikeThroughButton from './StrikeThroughButton';
 import AlignDropdown from './AlignDropdown';
 import BackgroundColorPicker from './BackgroundColorPicker';
 import BlockFormatDropdown from './BlockFormatDropdown';
@@ -12,7 +13,6 @@ import InsertLinkButton from './InsertLinkButton';
 import ItalicButton from './ItalicButton';
 import RedoButton from './RedoButton';
 import TextColorPicker from './TextColorPicker';
-import TextFormatDropdown from './TextFormatDropdown';
 import UnderlineButton from './UnderlineButton';
 import UndoButton from './UndoButton';
 
@@ -30,8 +30,8 @@ export {
   InsertLinkButton,
   ItalicButton,
   RedoButton,
+  StrikeThroughButton,
   TextColorPicker,
-  TextFormatDropdown,
   UnderlineButton,
   UndoButton,
 };

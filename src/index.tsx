@@ -1,51 +1,47 @@
-import EditorComposer from './EditorComposer';
 import Editor from './Editor';
-import ToolbarPlugin from './plugins/ToolbarPlugin/ToolbarPlugin';
+import EditorComposer from './EditorComposer';
 import MentionsPlugin from './plugins/MentionsPlugin';
+import ToolbarPlugin from './plugins/ToolbarPlugin/ToolbarPlugin';
 
 import {
   AlignDropdown,
   BackgroundColorPicker,
-  BlockFormatDropdown,
   BoldButton,
   CodeFormatButton,
-  CodeLanguageDropdown,
   FloatingLinkEditor,
   FontFamilyDropdown,
   FontSizeDropdown,
   InsertDropdown,
   InsertLinkButton,
   ItalicButton,
-  RedoButton,
+  StrikeThroughButton,
   TextColorPicker,
-  TextFormatDropdown,
   UnderlineButton,
-  UndoButton,
 } from './plugins/ToolbarPlugin/components';
 
+import { PLAYGROUND_TRANSFORMERS } from './plugins/MarkdownTransformers';
 import * as ToolbarTypes from './types';
 import Divider from './ui/Divider';
-import { PLAYGROUND_TRANSFORMERS } from './plugins/MarkdownTransformers';
 
 export {
-  EditorComposer,
-  Editor,
-  ToolbarPlugin,
   AlignDropdown,
   BackgroundColorPicker,
   BoldButton,
   CodeFormatButton,
+  Divider,
+  Editor,
+  EditorComposer,
   FloatingLinkEditor,
   FontFamilyDropdown,
   FontSizeDropdown,
   InsertDropdown,
   InsertLinkButton,
   ItalicButton,
-  TextColorPicker,
-  TextFormatDropdown,
-  UnderlineButton,
-  ToolbarTypes,
-  Divider,
   MentionsPlugin,
   PLAYGROUND_TRANSFORMERS,
+  StrikeThroughButton,
+  TextColorPicker,
+  ToolbarPlugin,
+  ToolbarTypes,
+  UnderlineButton,
 };

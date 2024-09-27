@@ -1,27 +1,21 @@
 import React from 'react';
-import { EditorComposer, Editor, Divider } from '../src';
+import { Divider, Editor, EditorComposer } from '../src';
 import ToolbarPlugin from '../src/plugins/ToolbarPlugin/ToolbarPlugin';
 
+import { $createParagraphNode, $createTextNode, $getRoot } from 'lexical';
 import {
   AlignDropdown,
   BackgroundColorPicker,
-  BlockFormatDropdown,
   BoldButton,
   CodeFormatButton,
-  CodeLanguageDropdown,
-  FloatingLinkEditor,
   FontFamilyDropdown,
   FontSizeDropdown,
   InsertDropdown,
   InsertLinkButton,
   ItalicButton,
-  RedoButton,
   TextColorPicker,
-  TextFormatDropdown,
   UnderlineButton,
-  UndoButton,
 } from '../src/plugins/ToolbarPlugin/components';
-import { $createParagraphNode, $createTextNode, $getRoot } from 'lexical';
 
 export default {
   title: 'clk-lexical',
@@ -50,7 +44,6 @@ export const FullEditor = () => (
         <InsertLinkButton />
         <TextColorPicker />
         <BackgroundColorPicker />
-        <TextFormatDropdown />
         <Divider />
         <InsertDropdown />
         <Divider />

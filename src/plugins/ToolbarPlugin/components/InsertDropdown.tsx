@@ -20,6 +20,7 @@ import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
 import TableCellActionMenuPlugin from '../../TableActionMenuPlugin';
 import HorizontalRulePlugin from '../../HorizontalRulePlugin';
 import EditorContext from '../../../context/EditorContext';
+import { v4 as uuidv4 } from 'uuid';
 
 // Taken from https://stackoverflow.com/a/9102270
 const YOUTUBE_ID_PARSER =
@@ -217,18 +218,15 @@ function InsertImageUploadedDialogBody({
   const isDisabled = src === '';
 
   const loadImage = async (files: FileList) => {
-    const reader = new FileReader();
-    if (onUpload) {
-      const hostedURL = await onUpload(Array.from(files));
-      setSrc(hostedURL);
-    } else {
-      reader.readAsDataURL(files[0]);
-      reader.onload = function () {
-        if (typeof reader.result === 'string') {
-          setSrc(reader.result);
-        }
-      };
-    }
+    const file = files[0];
+    if (!file) return;
+    const uid = uuidv4();
+    const updatedFile = new File([file], `${uid}`, {
+      type: file.type,
+      lastModified: file.lastModified,
+    });
+    const url = URL.createObjectURL(updatedFile);
+    setSrc(url);
   };
 
   return (
