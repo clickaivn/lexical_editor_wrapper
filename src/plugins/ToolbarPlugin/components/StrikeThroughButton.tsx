@@ -16,16 +16,14 @@ const StrikeThroughButton = () => {
       onClick={() => {
         activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough');
       }}
-      className={
-        'item ' + (isStrikethrough ? 'active dropdown-item-active' : '')
-      }
+      className={'toolbar-item spaced ' + (isStrikethrough ? 'active' : '')}
       title={t('toolbar:textFormatDropdown.Options.Strikethrough.Label')}
       aria-label={t(
         'toolbar:textFormatDropdown.Options.Strikethrough.Description'
       )}
       type="button"
     >
-      <i className="icon strikethrough" />
+      <i className="format strikethrough" />
     </button>
   );
 };
