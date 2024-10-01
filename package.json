@@ -1,7 +1,7 @@
 {
   "name": "clk-lexical",
   "description": "A React wrapper for the Lexical editor with configurable plugins.",
-  "version": "1.2.2",
+  "version": "1.2.6",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -18,6 +18,7 @@
     }
   },
   "scripts": {
+    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6006",
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
@@ -105,10 +106,14 @@
     "@lexical/selection": "0.11.0",
     "@lexical/table": "0.11.0",
     "@lexical/utils": "0.11.0",
+    "@types/katex": "^0.16.7",
     "i18next": "^22.0.3",
     "i18next-browser-languagedetector": "^7.0.0",
+    "katex": "^0.16.11",
     "lexical": "0.11.0",
+    "markdown-it": "^14.1.0",
     "react-i18next": "^12.0.0",
+    "showdown": "^2.1.0",
     "use-child": "^1.0.0",
     "utility-types": "^3.10.0",
     "y-websocket": ">=1.3.x",

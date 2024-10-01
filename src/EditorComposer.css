@@ -333,6 +333,10 @@ i.markdown {
   background-image: url(images/icons/markdown.svg);
 }
 
+i.paste-markdown {
+  background-image: url(images/icons/paste-markdown.svg);
+}
+
 i.outdent {
   background-image: url(images/icons/outdent.svg);
 }

@@ -13,6 +13,7 @@ import {
   InsertDropdown,
   InsertLinkButton,
   ItalicButton,
+  PasteFromChatButton,
   TextColorPicker,
   UnderlineButton,
 } from '../src/plugins/ToolbarPlugin/components';
@@ -45,9 +46,10 @@ export const FullEditor = () => (
         <TextColorPicker />
         <BackgroundColorPicker />
         <Divider />
-        <InsertDropdown />
+        <InsertDropdown enableEquations={true} enableYoutube />
         <Divider />
         <AlignDropdown />
+        <PasteFromChatButton />
       </ToolbarPlugin>
     </Editor>
   </EditorComposer>

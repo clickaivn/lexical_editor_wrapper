@@ -11,18 +11,19 @@ import {
   $createParagraphNode,
   $getSelection,
   $isRangeSelection,
-  LexicalEditor,
 } from 'lexical';
 import React, { useContext } from 'react';
-import EditorContext from '../../../context/EditorContext';
-import DropDown from '../../../ui/DropDown';
-import ToolbarContext from '../../../context/ToolbarContext';
 import { useTranslation } from 'react-i18next';
+
+import EditorContext from '../../../context/EditorContext';
+import ToolbarContext from '../../../context/ToolbarContext';
+import DropDown from '../../../ui/DropDown';
 
 const BlockFormatDropdown = () => {
   const { initialEditor } = useContext(EditorContext);
   const { blockType } = useContext(ToolbarContext);
   const { t } = useTranslation('toolbar');
+
   const formatParagraph = () => {
     if (blockType !== 'paragraph') {
       initialEditor.update(() => {

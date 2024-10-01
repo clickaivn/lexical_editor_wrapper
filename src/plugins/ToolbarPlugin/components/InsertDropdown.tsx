@@ -1,26 +1,26 @@
-import React, { useState, useCallback, useContext } from 'react';
-import { $getRoot, LexicalEditor, RangeSelection } from 'lexical';
-import DropDown from '../../../ui/DropDown';
+import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
+import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
+import { INSERT_TABLE_COMMAND } from '@lexical/table';
+import { $getRoot, LexicalEditor } from 'lexical';
+import React, { useContext, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import EditorContext from '../../../context/EditorContext';
+import useModal from '../../../hooks/useModal';
+import { $createStickyNode } from '../../../nodes/StickyNode';
 import Button from '../../../ui/Button';
-import TextInput from '../../../ui/TextInput';
+import DropDown from '../../../ui/DropDown';
 import FileInput from '../../../ui/FileInput';
+import TextInput from '../../../ui/TextInput';
+import HorizontalRulePlugin from '../../HorizontalRulePlugin';
 import ImagesPlugin, {
   INSERT_IMAGE_COMMAND,
   InsertImagePayload,
 } from '../../ImagesPlugin';
-import { INSERT_TABLE_COMMAND } from '@lexical/table';
-import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
 import PollPlugin, { INSERT_POLL_COMMAND } from '../../PollPlugin';
+import TableCellActionMenuPlugin from '../../TableActionMenuPlugin';
+import TableCellResizer from '../../TableCellResizer';
 import TwitterPlugin, { INSERT_TWEET_COMMAND } from '../../TwitterPlugin';
 import YouTubePlugin, { INSERT_YOUTUBE_COMMAND } from '../../YouTubePlugin';
-import { $createStickyNode } from '../../../nodes/StickyNode';
-import useModal from '../../../hooks/useModal';
-import TableCellResizer from '../../TableCellResizer';
-import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
-import TableCellActionMenuPlugin from '../../TableActionMenuPlugin';
-import HorizontalRulePlugin from '../../HorizontalRulePlugin';
-import EditorContext from '../../../context/EditorContext';
-import { v4 as uuidv4 } from 'uuid';
 
 // Taken from https://stackoverflow.com/a/9102270
 const YOUTUBE_ID_PARSER =

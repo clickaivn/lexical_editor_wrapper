@@ -15,6 +15,7 @@ import RedoButton from './RedoButton';
 import TextColorPicker from './TextColorPicker';
 import UnderlineButton from './UnderlineButton';
 import UndoButton from './UndoButton';
+import PasteFromChatButton from './PasteFromChatButton';
 
 export {
   AlignDropdown,
@@ -27,6 +28,7 @@ export {
   FontFamilyDropdown,
   FontSizeDropdown,
   InsertDropdown,
+  PasteFromChatButton,
   InsertLinkButton,
   ItalicButton,
   RedoButton,

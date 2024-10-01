@@ -14,6 +14,7 @@ import {
   InsertDropdown,
   InsertLinkButton,
   ItalicButton,
+  PasteFromChatButton,
   StrikeThroughButton,
   TextColorPicker,
   UnderlineButton,
@@ -43,5 +44,6 @@ export {
   TextColorPicker,
   ToolbarPlugin,
   ToolbarTypes,
+  PasteFromChatButton,
   UnderlineButton,
 };

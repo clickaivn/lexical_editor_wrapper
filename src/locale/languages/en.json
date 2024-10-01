@@ -182,6 +182,7 @@
     "Confirm_Discard": "Are you sure you want to discard the changes?",
     "Convert_From_Markdown": "Convert From Markdown",
     "Convert_From_Markdown_Description": "Convert from markdown",
+    "Paste_From_Chat": "From ClickAI",
     "Disconnect": "Disconnect",
     "Connect": "Connect",
     "Collaborative": "Collaborative Editing",
