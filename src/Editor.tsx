@@ -40,6 +40,7 @@ import { LexicalEditor } from 'lexical';
 import { useTranslation } from 'react-i18next';
 import DragDropPaste from './plugins/DragDropPastePlugin';
 import EmojiPickerPlugin from './plugins/EmojiPickerPlugin';
+import EquationsPlugin from './plugins/EquationsPlugin';
 
 interface IEditorProps {
   children?: ReactNode;
@@ -99,6 +100,7 @@ const Editor = ({
         {emojiPickerEnabled && <EmojiPickerPlugin />}
         <KeywordsPlugin />
         <SpeechToTextPlugin />
+        <EquationsPlugin />
         <DragDropPaste />
         {autoLinkEnabled && <AutoLinkPlugin />}
 

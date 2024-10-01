@@ -21,6 +21,7 @@ import TableCellActionMenuPlugin from '../../TableActionMenuPlugin';
 import TableCellResizer from '../../TableCellResizer';
 import TwitterPlugin, { INSERT_TWEET_COMMAND } from '../../TwitterPlugin';
 import YouTubePlugin, { INSERT_YOUTUBE_COMMAND } from '../../YouTubePlugin';
+import { InsertEquationDialog } from '../../EquationsPlugin';
 
 // Taken from https://stackoverflow.com/a/9102270
 const YOUTUBE_ID_PARSER =
@@ -321,6 +322,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
   enablePoll = false,
   enableHorizontalRule = false,
   enableStickyNote = false,
+  enableEquations = false,
   onUpload,
 }: IInsertDropdownProps) => {
   const { initialEditor, activeEditor } = useContext(EditorContext);
@@ -398,6 +400,23 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
               <span className="text">Table</span>
             </button>
           </div>
+        )}
+        {enableEquations && (
+          <button
+            onClick={() => {
+              showModal('Insert Equation', (onClose) => (
+                <InsertEquationDialog
+                  activeEditor={activeEditor}
+                  onClose={onClose}
+                />
+              ));
+            }}
+            className="item"
+            type="button"
+          >
+            <i className="icon equation" />
+            <span className="text">Equation</span>
+          </button>
         )}
         {enablePoll && (
           <button

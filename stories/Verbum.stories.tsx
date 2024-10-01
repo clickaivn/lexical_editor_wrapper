@@ -46,7 +46,7 @@ export const FullEditor = () => (
         <TextColorPicker />
         <BackgroundColorPicker />
         <Divider />
-        <InsertDropdown enableEquations={true} enableYoutube />
+        <InsertDropdown enableEquations enableYoutube />
         <Divider />
         <AlignDropdown />
         <PasteFromChatButton />
