@@ -1,5 +1,5 @@
 import { $generateNodesFromDOM } from '@lexical/html';
-import { $getSelection } from 'lexical';
+import { $getSelection, $createParagraphNode, $getRoot } from 'lexical';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import showdown from 'showdown';
@@ -25,7 +25,14 @@ const PasteFromChatButton = () => {
             const nodes = $generateNodesFromDOM(initialEditor, dom);
             const selection = $getSelection();
 
-            selection.insertNodes(nodes);
+            if (!selection) {
+              const paragraphNode = $createParagraphNode();
+              paragraphNode.append(...nodes);
+              const root = $getRoot();
+              root.append(paragraphNode);
+            } else {
+              selection.insertNodes(nodes);
+            }
           });
         })
         .catch((err) => {

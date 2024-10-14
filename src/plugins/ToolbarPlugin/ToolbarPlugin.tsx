@@ -25,19 +25,18 @@ import {
   SELECTION_CHANGE_COMMAND,
 } from 'lexical';
 import * as React from 'react';
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import useChild from 'use-child';
-import { getSelectedNode } from '../../utils/node.util';
 import EditorContext from '../../context/EditorContext';
 import ToolbarContext from '../../context/ToolbarContext';
-import AlignDropdown from './components/AlignDropdown';
-import InsertDropdown from './components/InsertDropdown';
-import './ToolbarPlugin.css';
-import UndoButton from './components/UndoButton';
-import RedoButton from './components/RedoButton';
-import CodeLanguageDropdown from './components/CodeLanguageDropdown';
-import BlockFormatDropdown from './components/BlockFormatDropdown';
 import Divider from '../../ui/Divider';
+import { getSelectedNode } from '../../utils/node.util';
+import AlignDropdown from './components/AlignDropdown';
+import BlockFormatDropdown from './components/BlockFormatDropdown';
+import CodeLanguageDropdown from './components/CodeLanguageDropdown';
+import RedoButton from './components/RedoButton';
+import UndoButton from './components/UndoButton';
+import './ToolbarPlugin.css';
 
 const supportedBlockTypes = new Set([
   'paragraph',
@@ -74,7 +73,6 @@ const ToolbarPlugin = ({
   defaultBgColor = '#fff',
   defaultFontFamily = 'Arial',
 }: IToolbarProps) => {
-  const [insertExists, InsertComponent] = useChild(children, InsertDropdown);
   const [alignExists, AlignComponent] = useChild(children, AlignDropdown);
 
   const { initialEditor, activeEditor, setActiveEditor } =
@@ -90,8 +88,6 @@ const ToolbarPlugin = ({
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
-  const [isSubscript, setIsSubscript] = useState(false);
-  const [isSuperscript, setIsSuperscript] = useState(false);
   const [isCode, setIsCode] = useState(false);
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
@@ -114,8 +110,6 @@ const ToolbarPlugin = ({
       setIsItalic(selection.hasFormat('italic'));
       setIsUnderline(selection.hasFormat('underline'));
       setIsStrikethrough(selection.hasFormat('strikethrough'));
-      setIsSubscript(selection.hasFormat('subscript'));
-      setIsSuperscript(selection.hasFormat('superscript'));
       setIsCode(selection.hasFormat('code'));
       setIsRTL($isParentElementRTL(selection));
 
@@ -239,6 +233,12 @@ const ToolbarPlugin = ({
       initialEditor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
     }
   }, [initialEditor, isLink]);
+
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent('blockTypeChange', { detail: { blockType } })
+    );
+  }, [blockType]);
 
   return (
     <ToolbarContext.Provider

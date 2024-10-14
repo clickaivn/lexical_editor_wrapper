@@ -12,17 +12,16 @@ import {
   $getSelection,
   $isRangeSelection,
 } from 'lexical';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import EditorContext from '../../../context/EditorContext';
-import ToolbarContext from '../../../context/ToolbarContext';
 import DropDown from '../../../ui/DropDown';
 
 const BlockFormatDropdown = () => {
   const { initialEditor } = useContext(EditorContext);
-  const { blockType } = useContext(ToolbarContext);
   const { t } = useTranslation('toolbar');
+  const [blockType, setBlockType] = useState('paragraph');
 
   const formatParagraph = () => {
     if (blockType !== 'paragraph') {
@@ -103,6 +102,20 @@ const BlockFormatDropdown = () => {
       });
     }
   };
+
+  const syncBlockType = (event: any) => {
+    const blockType = event.detail.blockType;
+    console.log('syncBlockType', blockType);
+    setBlockType(blockType);
+  };
+
+  useEffect(() => {
+    window.addEventListener('blockTypeChange', syncBlockType);
+
+    return () => {
+      window.removeEventListener('blockTypeChange', syncBlockType);
+    };
+  }, []);
 
   return (
     <DropDown

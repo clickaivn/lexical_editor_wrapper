@@ -378,7 +378,7 @@ i.gif {
 }
 
 .link-editor .button.active,
-.toolbar .button.active {
+:is(.toolbar, .character-style-popup) .button.active {
   background-color: rgb(223, 232, 250);
 }
 
@@ -1097,7 +1097,7 @@ button.action-button:disabled {
   height: 36px;
 }
 
-.toolbar button.toolbar-item {
+:is(.toolbar, .character-style-popup) button.toolbar-item {
   border: 0;
   display: flex;
   background: none;
@@ -1108,15 +1108,15 @@ button.action-button:disabled {
   flex-shrink: 0;
 }
 
-.toolbar button.toolbar-item:disabled {
+:is(.toolbar, .character-style-popup) button.toolbar-item:disabled {
   cursor: not-allowed;
 }
 
-.toolbar button.toolbar-item.spaced {
+:is(.toolbar, .character-style-popup) button.toolbar-item.spaced {
   margin-right: 2px;
 }
 
-.toolbar button.toolbar-item i.format {
+:is(.toolbar, .character-style-popup) button.toolbar-item i.format {
   background-size: contain;
   display: inline-block;
   height: 18px;
@@ -1127,23 +1127,23 @@ button.action-button:disabled {
   opacity: 0.6;
 }
 
-.toolbar button.toolbar-item:disabled i.format {
+:is(.toolbar, .character-style-popup) button.toolbar-item:disabled i.format {
   opacity: 0.2;
 }
 
-.toolbar button.toolbar-item.active {
+:is(.toolbar, .character-style-popup) button.toolbar-item.active {
   background-color: rgba(223, 232, 250, 0.3);
 }
 
-.toolbar button.toolbar-item.active i {
+:is(.toolbar, .character-style-popup) button.toolbar-item.active i {
   opacity: 1;
 }
 
-.toolbar .toolbar-item:hover:not([disabled]) {
+:is(.toolbar, .character-style-popup) .toolbar-item:hover:not([disabled]) {
   background-color: #eee;
 }
 
-.toolbar select.toolbar-item {
+:is(.toolbar, .character-style-popup) select.toolbar-item {
   border: 0;
   display: flex;
   background: none;
@@ -1158,11 +1158,11 @@ button.action-button:disabled {
   text-overflow: ellipsis;
 }
 
-.toolbar select.code-language {
+:is(.toolbar, .character-style-popup) select.code-language {
   width: 150px;
 }
 
-.toolbar .toolbar-item .text {
+:is(.toolbar, .character-style-popup) .toolbar-item .text {
   display: flex;
   line-height: 20px;
   vertical-align: middle;
@@ -1175,7 +1175,7 @@ button.action-button:disabled {
   padding-right: 10px;
 }
 
-.toolbar .toolbar-item .icon {
+:is(.toolbar, .character-style-popup) .toolbar-item .icon {
   display: flex;
   width: 20px;
   height: 20px;
@@ -1185,7 +1185,7 @@ button.action-button:disabled {
   background-size: contain;
 }
 
-.toolbar i.chevron-down {
+:is(.toolbar, .character-style-popup) i.chevron-down {
   margin-top: 3px;
   width: 16px;
   height: 16px;
@@ -1193,7 +1193,7 @@ button.action-button:disabled {
   user-select: none;
 }
 
-.toolbar i.chevron-down.inside {
+:is(.toolbar, .character-style-popup) i.chevron-down.inside {
   width: 16px;
   height: 16px;
   display: flex;
@@ -1203,7 +1203,7 @@ button.action-button:disabled {
   pointer-events: none;
 }
 
-.toolbar .divider {
+:is(.toolbar, .character-style-popup) .divider {
   width: 1px;
   background-color: #eee;
   margin: 0 4px;

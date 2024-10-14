@@ -1,11 +1,3 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 import { $isCodeHighlightNode } from '@lexical/code';
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
@@ -23,13 +15,13 @@ import {
   SELECTION_CHANGE_COMMAND,
   TextNode,
 } from 'lexical';
-import { useCallback, useEffect, useRef, useState } from 'react';
 import * as React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { INSERT_INLINE_COMMAND } from './CommentPlugin';
-import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
+import { BlockFormatDropdown } from '../plugins/ToolbarPlugin/components';
 
 function setPopupPosition(
   editor: HTMLElement,
@@ -87,10 +79,6 @@ function FloatingCharacterStylesEditor({
       editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
     }
   }, [editor, isLink]);
-
-  const insertComment = () => {
-    editor.dispatchCommand(INSERT_INLINE_COMMAND, null);
-  };
 
   const updateCharacterStylesEditor = useCallback(() => {
     const selection = $getSelection();
@@ -167,6 +155,7 @@ function FloatingCharacterStylesEditor({
 
   return (
     <div ref={popupCharStylesEditorRef} className="character-style-popup">
+      <BlockFormatDropdown />
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
@@ -215,28 +204,6 @@ function FloatingCharacterStylesEditor({
       </button>
       <button
         onClick={() => {
-          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'subscript');
-        }}
-        className={'popup-item spaced ' + (isSubscript ? 'active' : '')}
-        title="Subscript"
-        aria-label={t('toolbar:characterStylesPopupPlugin.Format_Subscript')}
-        type="button"
-      >
-        <i className="format subscript" />
-      </button>
-      <button
-        onClick={() => {
-          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'superscript');
-        }}
-        className={'popup-item spaced ' + (isSuperscript ? 'active' : '')}
-        title="Superscript"
-        aria-label={t('toolbar:characterStylesPopupPlugin.Format_Superscript')}
-        type="button"
-      >
-        <i className="format superscript" />
-      </button>
-      <button
-        onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
         }}
         className={'popup-item spaced ' + (isCode ? 'active' : '')}
@@ -252,14 +219,6 @@ function FloatingCharacterStylesEditor({
         type="button"
       >
         <i className="format link" />
-      </button>
-      <button
-        onClick={insertComment}
-        className={'popup-item spaced ' + (isLink ? 'active' : '')}
-        aria-label={t('toolbar:characterStylesPopupPlugin.Add_comment')}
-        type="button"
-      >
-        <i className="format add-comment" />
       </button>
     </div>
   );
