@@ -105,7 +105,6 @@ const BlockFormatDropdown = () => {
 
   const syncBlockType = (event: any) => {
     const blockType = event.detail.blockType;
-    console.log('syncBlockType', blockType);
     setBlockType(blockType);
   };
 

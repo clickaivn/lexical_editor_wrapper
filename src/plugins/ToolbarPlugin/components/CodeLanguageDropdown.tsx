@@ -31,7 +31,6 @@ const CodeLanguageDropdown = () => {
         if (selectedElementKey !== null) {
           const node = $getNodeByKey(selectedElementKey);
           if ($isCodeNode(node)) {
-            console.log(e.target.value);
             node.setLanguage(e.target.value);
           }
         }

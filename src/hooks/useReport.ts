@@ -48,7 +48,6 @@ export default function useReport(): (arg0: string) => NodeJS.Timeout {
   return useCallback(
     (content) => {
       // eslint-disable-next-line no-console
-      console.log(content);
       const element = getElement();
       clearTimeout(timer.current);
       element.innerHTML = content;
