@@ -22,6 +22,7 @@ import type {
 import { $applyNodeReplacement, createEditor, DecoratorNode } from 'lexical';
 import * as React from 'react';
 import { Suspense } from 'react';
+import { base64ToBlobURL } from '../utils/node.util';
 
 const ImageComponent = React.lazy(
   // @ts-ignore
@@ -235,7 +236,7 @@ export function $createImageNode({
 }: ImagePayload): ImageNode {
   return $applyNodeReplacement(
     new ImageNode(
-      src,
+      base64ToBlobURL(src),
       altText,
       maxWidth,
       width,

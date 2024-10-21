@@ -338,5 +338,6 @@ function useCharacterStylesPopup(editor: LexicalEditor): JSX.Element | null {
 
 export default function CharacterStylesPopupPlugin(): JSX.Element | null {
   const [editor] = useLexicalComposerContext();
+  if (!editor.isEditable()) return null;
   return useCharacterStylesPopup(editor);
 }
