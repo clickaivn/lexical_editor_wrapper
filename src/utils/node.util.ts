@@ -20,7 +20,7 @@ export function getSelectedNode(
 }
 
 export function base64ToBlobURL(base64: string): string {
-  if (base64.startsWith('blob:')) return base64;
+  if (!base64.startsWith('data:')) return base64;
   const [dataType, base64Data] = base64.split(',');
 
   if (!base64Data) throw new Error('Invalid Base64 string');

@@ -221,13 +221,18 @@ function InsertImageUploadedDialogBody({
   const loadImage = async (files: FileList) => {
     const file = files[0];
     if (!file) return;
-    const uid = uuidv4();
-    const updatedFile = new File([file], `${uid}`, {
-      type: file.type,
-      lastModified: file.lastModified,
-    });
-    const url = URL.createObjectURL(updatedFile);
-    setSrc(url);
+    if (onUpload) {
+      const url = await onUpload([file]);
+      setSrc(url);
+    } else {
+      const uid = uuidv4();
+      const updatedFile = new File([file], `${uid}`, {
+        type: file.type,
+        lastModified: file.lastModified,
+      });
+      const url = URL.createObjectURL(updatedFile);
+      setSrc(url);
+    }
   };
 
   return (
