@@ -39,6 +39,8 @@ export default function ClickableLinkPlugin({
     }
 
     function onClick(e: Event) {
+      e.stopPropagation();
+      e.preventDefault();
       // Based on pointerdown/up we can check if cursor moved during click event,
       // and ignore clicks with moves (to allow link text selection)
       const hasMovedDuringClick = hasMoved.current;
