@@ -6,7 +6,9 @@ import showdown from 'showdown';
 import EditorContext from '../../../context/EditorContext';
 import ToolbarContext from '../../../context/ToolbarContext';
 
-const converter = new showdown.Converter();
+const converter = new showdown.Converter({
+  tables: true,
+});
 
 const PasteFromChatButton = () => {
   const { initialEditor } = useContext(EditorContext);
@@ -20,6 +22,7 @@ const PasteFromChatButton = () => {
         .then((textContent) => {
           initialEditor.update(() => {
             const html = converter.makeHtml(textContent);
+            console.log(html);
             const parser = new DOMParser();
             const dom = parser.parseFromString(html, 'text/html');
             const nodes = $generateNodesFromDOM(initialEditor, dom);
