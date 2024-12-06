@@ -228,7 +228,7 @@ const ToolbarPlugin = ({
 
   const insertLink = useCallback(() => {
     if (!isLink) {
-      initialEditor.dispatchCommand(TOGGLE_LINK_COMMAND, 'https://');
+      initialEditor.dispatchCommand(TOGGLE_LINK_COMMAND, '');
     } else {
       initialEditor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
     }

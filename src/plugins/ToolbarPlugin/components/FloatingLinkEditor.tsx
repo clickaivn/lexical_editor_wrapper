@@ -147,6 +147,7 @@ function FloatingLinkEditor({
           onChange={(event) => {
             setLinkUrl(event.target.value);
           }}
+          placeholder="https://"
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
               event.preventDefault();
@@ -165,8 +166,8 @@ function FloatingLinkEditor({
       ) : (
         <>
           <div className="link-input">
-            <a href={linkUrl} target="_blank" rel="noopener noreferrer">
-              {linkUrl}
+            <a href={linkUrl || '#'} target="_blank" rel="noopener noreferrer">
+              {linkUrl}&nbsp;
             </a>
             <div
               className="link-edit"
