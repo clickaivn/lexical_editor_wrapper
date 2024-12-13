@@ -38,7 +38,7 @@ function FloatingLinkEditor({
   const editorRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef(null);
   const [linkUrl, setLinkUrl] = useState('');
-  const [isEditMode, setEditMode] = useState(false);
+  const [isEditMode, setEditMode] = useState(true);
   const [lastSelection, setLastSelection] = useState(null);
 
   const updateLinkEditor = useCallback(() => {
