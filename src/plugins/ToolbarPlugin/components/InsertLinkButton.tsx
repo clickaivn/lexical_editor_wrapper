@@ -23,6 +23,7 @@ const InsertLinkButton = () => {
         <i className="format link" />
       </button>
       {isLink &&
+        activeEditor.isEditable() &&
         createPortal(
           <FloatingLinkEditor editor={activeEditor} />,
           document.body
