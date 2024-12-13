@@ -165,8 +165,18 @@ function FloatingLinkEditor({
         />
       ) : (
         <>
-          <div className="link-input">
-            <a href={linkUrl || '#'} target="_blank" rel="noopener noreferrer">
+          <div
+            className="link-input"
+            onClick={() => {
+              setEditMode(true);
+            }}
+          >
+            <a
+              href={linkUrl || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(event) => event.preventDefault()}
+            >
               {linkUrl}&nbsp;
             </a>
             <div
@@ -174,9 +184,6 @@ function FloatingLinkEditor({
               role="button"
               tabIndex={0}
               onMouseDown={(event) => event.preventDefault()}
-              onClick={() => {
-                setEditMode(true);
-              }}
             />
           </div>
           <LinkPreview url={linkUrl} />
