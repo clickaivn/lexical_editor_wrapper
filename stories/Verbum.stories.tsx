@@ -33,7 +33,7 @@ const initialState = () => {
 
 export const FullEditor = () => (
   <EditorComposer initialEditorState={initialState}>
-    <Editor>
+    <Editor autoLinkEnabled>
       <ToolbarPlugin>
         <FontFamilyDropdown />
         <FontSizeDropdown />

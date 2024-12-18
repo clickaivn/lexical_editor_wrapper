@@ -53,7 +53,7 @@ export default function ClickableLinkPlugin({
         return;
       }
 
-      const href = linkDomNode.getAttribute('href');
+      let href = linkDomNode.getAttribute('href');
 
       if (
         linkDomNode.getAttribute('contenteditable') === 'false' ||
@@ -65,6 +65,11 @@ export default function ClickableLinkPlugin({
       let linkNode = null;
       editor.update(() => {
         const maybeLinkNode = $getNearestNodeFromDOMNode(linkDomNode);
+
+        if (href === 'https:' || href === 'http:') {
+          linkDomNode.setAttribute('href', linkDomNode.textContent);
+          href = linkDomNode.textContent;
+        }
 
         if ($isLinkNode(maybeLinkNode)) {
           linkNode = maybeLinkNode;
