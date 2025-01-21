@@ -40,6 +40,9 @@ export default function DropDown({
         left,
         window.innerWidth - dropDown.offsetWidth - 20
       )}px`;
+      if (dropDown.offsetHeight + top > window.innerHeight) {
+        dropDown.style.top = `${top - dropDown.offsetHeight - 10}px`;
+      }
     }
   }, [dropDownRef, buttonRef, showDropDown]);
 
