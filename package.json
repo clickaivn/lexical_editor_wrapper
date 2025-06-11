@@ -1,7 +1,7 @@
 {
   "name": "clk-lexical",
   "description": "A React wrapper for the Lexical editor with configurable plugins.",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

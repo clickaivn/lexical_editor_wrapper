@@ -23,6 +23,7 @@ import {
   DRAGOVER_COMMAND,
   DRAGSTART_COMMAND,
   DROP_COMMAND,
+  PASTE_COMMAND,
   LexicalCommand,
   LexicalEditor,
 } from 'lexical';
@@ -263,11 +264,103 @@ export default function ImagesPlugin({
           return onDrop(event, editor);
         },
         COMMAND_PRIORITY_HIGH
+      ),
+      editor.registerCommand<ClipboardEvent>(
+        PASTE_COMMAND,
+        (event) => {
+          return handleImagePaste(event, editor, maxWidth);
+        },
+        COMMAND_PRIORITY_HIGH
       )
     );
-  }, [captionsEnabled, editor]);
+  }, [captionsEnabled, editor, maxWidth]);
 
   return null;
+}
+
+// Handle image paste from clipboard
+function handleImagePaste(
+  event: ClipboardEvent,
+  editor: LexicalEditor,
+  maxWidth?: number
+): boolean {
+  const clipboardData = event.clipboardData;
+  if (!clipboardData) {
+    return false;
+  }
+
+  // First check if clipboard has direct image data
+  const items = clipboardData.items;
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    // Look specifically for image MIME types
+    if (item.type.startsWith('image/')) {
+      event.preventDefault();
+
+      // Get the image file from clipboard
+      const file = item.getAsFile();
+      if (!file) {
+        continue;
+      }
+
+      // Read the image file as binary data and convert to data URL
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          editor.update(() => {
+            const imageNode = $createImageNode({
+              src: reader.result as string,
+              altText: 'Pasted image',
+              maxWidth,
+            });
+            $insertNodes([imageNode]);
+            if ($isRootOrShadowRoot(imageNode.getParentOrThrow())) {
+              $wrapNodeInElement(imageNode, $createParagraphNode).selectEnd();
+            }
+          });
+        }
+      };
+      reader.readAsDataURL(file);
+      return true;
+    }
+  }
+
+  // Check for HTML content with img tags as fallback
+  const htmlContent = clipboardData.getData('text/html');
+  if (htmlContent) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlContent, 'text/html');
+    const images = doc.querySelectorAll('img');
+
+    // If we found images in the HTML
+    if (images.length > 0) {
+      event.preventDefault();
+
+      // Process the first image we find
+      const img = images[0];
+      const src = img.getAttribute('src');
+
+      // Only process if we have a source - but prefer data URLs
+      if (src && src.startsWith('data:')) {
+        // Direct use of data URL
+        editor.update(() => {
+          const imageNode = $createImageNode({
+            src,
+            altText: img.getAttribute('alt') || 'Pasted image',
+            maxWidth,
+          });
+          $insertNodes([imageNode]);
+          if ($isRootOrShadowRoot(imageNode.getParentOrThrow())) {
+            $wrapNodeInElement(imageNode, $createParagraphNode).selectEnd();
+          }
+        });
+        return true;
+      }
+    }
+  }
+
+  // Return false to allow the default paste handling for other content types
+  return false;
 }
 
 const TRANSPARENT_IMAGE =
