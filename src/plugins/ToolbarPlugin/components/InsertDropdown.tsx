@@ -11,6 +11,7 @@ import Button from '../../../ui/Button';
 import DropDown from '../../../ui/DropDown';
 import FileInput from '../../../ui/FileInput';
 import TextInput from '../../../ui/TextInput';
+import EmojiSanitizePlugin from '../../EmojiSanitizePlugin';
 import HorizontalRulePlugin from '../../HorizontalRulePlugin';
 import ImagesPlugin, {
   INSERT_IMAGE_COMMAND,
@@ -316,6 +317,7 @@ export interface IInsertDropdownProps {
   enableExcalidraw?: boolean;
   enableHorizontalRule?: boolean;
   enableStickyNote?: boolean;
+  enableEmojiSanitize?: boolean;
   onUpload?: (files: File[]) => Promise<string>;
 }
 
@@ -328,6 +330,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
   enableHorizontalRule = false,
   enableStickyNote = false,
   enableEquations = false,
+  enableEmojiSanitize = true,
   onUpload,
 }: IInsertDropdownProps) => {
   const { initialEditor, activeEditor } = useContext(EditorContext);
@@ -347,6 +350,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
       {enablePoll && <PollPlugin />}
       {enableImage.enable && <ImagesPlugin maxWidth={enableImage.maxWidth} />}
       {enableHorizontalRule && <HorizontalRulePlugin />}
+      {enableEmojiSanitize && <EmojiSanitizePlugin />}
 
       <DropDown
         buttonClassName="toolbar-item spaced"
